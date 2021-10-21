@@ -1,6 +1,7 @@
-import com.example.trainingproject.model.UserEntity;
-import com.example.trainingproject.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+package com.example.userservice.controller;
+
+import com.example.userservice.entity.User;
+import com.example.userservice.repository.UserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,11 +12,14 @@ import java.util.List;
 @RequestMapping("/api")
 public class UserController {
 
-    @Autowired
-    UserRepository repository;
+    private final UserRepository repository;
+
+    public UserController(UserRepository repository) {
+        this.repository = repository;
+    }
 
     @GetMapping("/users")
-    public List<UserEntity> getAllUsers() {
+    public List<User> getAllUsers() {
         return repository.findAll();
     }
 
@@ -23,4 +27,5 @@ public class UserController {
     public String test() {
         return "test";
     }
+
 }

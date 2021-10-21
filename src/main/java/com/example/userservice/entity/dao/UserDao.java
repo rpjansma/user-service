@@ -1,6 +1,6 @@
-package com.example.trainingproject.model.dao;
+package com.example.userservice.entity.dao;
 
-import com.example.trainingproject.model.UserEntity;
+import com.example.userservice.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +12,9 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserDao {
 
-    UserEntity user;
+    User user;
 
-    public void UserDao(UserEntity user) {
+    public void UserDao(User user) {
         this.user = user;
     }
 
