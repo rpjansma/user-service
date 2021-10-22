@@ -1,4 +1,4 @@
-package com.example.trainingproject;
+package com.amdocs.userservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
