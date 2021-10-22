@@ -1,6 +1,6 @@
-package com.example.userservice.entity.dao;
+package com.amdocs.userservice.entity.dao;
 
-import com.example.userservice.entity.User;
+import com.amdocs.userservice.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,5 +17,4 @@ public class UserDao {
     public void UserDao(User user) {
         this.user = user;
     }
-
 }
