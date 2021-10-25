@@ -1,29 +1,41 @@
 package com.amdocs.userservice.entity;
 
+import jdk.jfr.Timestamp;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
+import javax.validation.constraints.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
+
     private String username;
-    @Min(6)
+
     private String password;
-    @Null
+
     private String address;
-    @Null
-    @Min(4)
+
+    @Size(min=8, message = "Phone number must have at least 8 numbers.")
     private String phone;
+
+    private String email;
+
+    @CreationTimestamp
+    private LocalDateTime reg_date;
+
+    @UpdateTimestamp
+    private LocalDateTime last_update;
 
 }
