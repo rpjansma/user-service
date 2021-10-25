@@ -48,7 +48,7 @@ public class UserController {
     @PutMapping("/users")
     public ResponseEntity updateUser(@RequestBody User user) {
         try {
-            return new ResponseEntity<>(userService.updateUser(user), HttpStatus.OK);
+            return new ResponseEntity<>(userService.updateUser(user) ?  "Updated successfully" : "Update error", HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity("Sorry, we got a error, try again later.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
