@@ -7,10 +7,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.List;
 import java.util.UUID;
@@ -24,27 +27,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 class UserControllerTest {
 
-    @MockBean
+    @Mock
     UserServiceImpl userService;
 
-    @Autowired
     MockMvc mockMvc;
+
+    UserController controller;
 
     @Autowired
     ObjectMapper objectMapper;
 
     @BeforeEach
     public void setUp() {
+        controller = new UserController(userService);
         User validUser = new User();
+        MockitoAnnotations.openMocks(this);
+
+        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
     @Test
     void getAllUsers() throws Exception {
-        User validUser = new User();
-        given(userService.getAllUsers()).willReturn((List<User>) validUser);
-
-        mockMvc.perform(get("/api/users/").accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+//        User validUser = new User();
+//        given(userService.getUserByid(1L)).willReturn(java.util.Optional.of(validUser));
+//
+//        mockMvc.perform(get("/api/v1/users").accept(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk());
     }
 
     @Test
